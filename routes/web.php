@@ -12,6 +12,7 @@ use App\Http\Controllers\DetailedForm\Step6Controller;
 use App\Http\Controllers\DetailedForm\Step7Controller;
 use App\Http\Controllers\DetailedForm\Step8Controller;
 use App\Http\Controllers\DetailedForm\Step9Controller;
+use App\Http\Controllers\ProposalController;
 use Illuminate\Support\Facades\Route;
 use Spatie\Honeypot\ProtectAgainstSpam;
 
@@ -34,6 +35,10 @@ Route::view('/about', 'static-pages.about')->name('about');
 Route::view('/careers', 'static-pages.careers')->name('careers');
 Route::view('/security', 'static-pages.security')->name('security');
 Route::view('/compliance', 'static-pages.compliance')->name('compliance');
+Route::view('/ai-invoice-automation', 'static-pages.ai-invoice-automation')
+    ->name('ai-invoice-automation');
+Route::view('/custom-ai-solutions', 'static-pages.custom-ai-solutions')
+    ->name('custom-ai-solutions');
 Route::view('/case-studies/ai-ecommerce-assistant', 'case-studies.e-commerce-assistant')
     ->name('case-studies.ai-ecommerce-assistant');
 Route::view(
@@ -86,3 +91,15 @@ Route::get('/sitemap.xml', function () {
 
     return response('Sitemap not found', 404);
 })->name('sitemap');
+
+Route::get('/proposals/{proposal:company_name}', [ProposalController::class, 'index'])
+    ->name('proposals.index');
+
+Route::post('/proposals/{proposal:company_name}/accept-terms', [ProposalController::class, 'acceptTerms'])
+    ->name('proposals.accept-terms');
+
+Route::post('/proposals/{proposal:company_name}/accept', [ProposalController::class, 'acceptProposal'])
+    ->name('proposals.accept');
+
+Route::get('/proposals/{proposal:company_name}/demo', [ProposalController::class, 'demo'])
+    ->name('proposals.demo');
