@@ -21,37 +21,37 @@
          x-transition:leave="transition ease-in duration-200"
          x-transition:leave-start="opacity-100"
          x-transition:leave-end="opacity-0"
-         class="fixed inset-0 z-50 flex items-center justify-center p-4"
+         class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto overflow-x-hidden"
          style="display: none;">
         <div class="absolute inset-0 bg-gray-950/50 backdrop-blur-sm" @click.away=""></div>
 
-        <div class="relative bg-gray-900 rounded-lg border border-gray-700 shadow-2xl max-w-2xl w-full p-8 md:p-10"
+        <div class="relative bg-gray-900 rounded-lg border border-gray-700 shadow-2xl max-w-2xl w-full min-w-0 max-h-[calc(100dvh-1.5rem)] md:max-h-none overflow-y-auto p-4 sm:p-6 md:p-10"
              x-transition:enter="transition ease-out duration-300"
              x-transition:enter-start="opacity-0 scale-95"
              x-transition:enter-end="opacity-100 scale-100"
              x-transition:leave="transition ease-in duration-200"
              x-transition:leave-start="opacity-100 scale-100"
              x-transition:leave-end="opacity-0 scale-95">
-            <div class="text-center mb-6">
-                <h2 class="text-2xl font-bold text-white mb-2">Εμπιστευτικό Έγγραφο</h2>
-                <p class="text-gray-400">Παρακαλούμε διαβάστε και αποδεχτείτε τους όρους</p>
+            <div class="text-center mb-4 sm:mb-6">
+                <h2 class="text-xl sm:text-2xl font-bold text-white mb-2">Εμπιστευτικό Έγγραφο</h2>
+                <p class="text-sm sm:text-base text-gray-400">Παρακαλούμε διαβάστε και αποδεχτείτε τους όρους</p>
             </div>
 
-            <div class="bg-gray-800/50 rounded-lg p-6 mb-6 border border-gray-700">
-                <p class="text-gray-300 leading-relaxed mb-4">
+            <div class="bg-gray-800/50 rounded-lg p-4 sm:p-6 mb-6 border border-gray-700 overflow-hidden">
+                <p class="text-gray-300 leading-relaxed mb-4 break-words hyphens-auto">
                     Η παρούσα μελέτη αποτελεί εμπιστευτικό έγγραφο. Δεν επιτρέπεται η αναπαραγωγή, διανομή ή μεταβίβαση, εν όλω ή εν μέρει, σε οποιοδήποτε τρίτο πρόσωπο ή εταιρεία, πέραν των αρμοδίων στελεχών της εταιρείας Pack-Man, για την οποία και έχει αποκλειστικά δημιουργηθεί. Τα πνευματικά δικαιώματα της παρούσας μελέτης ανήκουν στη <strong class="text-white">Noctua Core – Elias Kalyvas Learning & Development</strong>.
                 </p>
             </div>
 
-            <div class="flex flex-col sm:flex-row gap-4">
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 min-w-0">
                 <button @click="window.location.href = '{{ route('home') }}'"
-                        class="flex-1 px-10 py-4 text-lg font-semibold text-gray-300 bg-gray-800 rounded-lg hover:bg-gray-700 transition-all duration-200 border border-gray-700 cursor-pointer">
+                        class="flex-1 min-w-0 px-5 py-3 sm:px-10 sm:py-4 text-base sm:text-lg font-semibold text-gray-300 bg-gray-800 rounded-lg hover:bg-gray-700 transition-all duration-200 border border-gray-700 cursor-pointer text-center">
                     Απόρριψη
                 </button>
                 <button @click="accepting = true; fetch('{{ route('proposals.accept-terms', ['proposal' => $proposal->company_name]) }}', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content }, body: JSON.stringify({ secret: '{{ $secret }}' }) }).then(() => { $dispatch('terms-accepted'); }).catch(() => { accepting = false; alert('Σφάλμα κατά την αποδοχή. Παρακαλώ δοκιμάστε ξανά.'); })"
                         :disabled="accepting"
-                        class="flex-1 px-10 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-600/80 to-violet-600/80 backdrop-blur-sm rounded-lg hover:from-blue-600 hover:to-violet-600 hover:border-blue-400/50 hover:-translate-y-0.5 transition-all duration-200 shadow-lg shadow-blue-500/20 hover:shadow-xl hover:shadow-blue-500/30 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 cursor-pointer">
-                    <span class="whitespace-nowrap" x-show="!accepting">Αποδέχομαι τους Όρους</span>
+                        class="flex-1 min-w-0 px-5 py-3 sm:px-10 sm:py-4 text-base sm:text-lg font-semibold text-white bg-gradient-to-r from-blue-600/80 to-violet-600/80 backdrop-blur-sm rounded-lg hover:from-blue-600 hover:to-violet-600 hover:border-blue-400/50 sm:hover:-translate-y-0.5 transition-all duration-200 shadow-lg shadow-blue-500/20 hover:shadow-xl hover:shadow-blue-500/30 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 cursor-pointer text-center">
+                    <span class="sm:whitespace-nowrap" x-show="!accepting">Αποδέχομαι τους Όρους</span>
                     <span x-show="accepting">Επεξεργασία...</span>
                 </button>
             </div>
@@ -66,9 +66,9 @@
          x-transition:leave="transition ease-in duration-300"
          x-transition:leave-start="opacity-100 translate-y-0"
          x-transition:leave-end="opacity-0 -translate-y-2"
-         class="fixed top-25 left-1/2 -translate-x-1/2 z-50 px-6 py-4 rounded-lg border border-emerald-500/50 bg-emerald-950/95 backdrop-blur-sm shadow-lg shadow-emerald-500/20"
+         class="fixed top-20 sm:top-25 left-1/2 -translate-x-1/2 z-50 w-[min(340px,calc(100vw-2rem))] sm:w-auto sm:min-w-0 px-5 py-4 sm:px-6 rounded-lg border border-emerald-500/50 bg-emerald-950/95 backdrop-blur-sm shadow-lg shadow-emerald-500/20"
          style="display: none;">
-        <p class="text-emerald-100 font-medium flex items-center gap-2">
+        <p class="text-emerald-100 font-medium flex items-center gap-2 text-sm sm:text-base">
             <svg class="size-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
             </svg>
@@ -83,7 +83,7 @@
         <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl animate-pulse"></div>
         <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-violet-600/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
 
-        <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
+        <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-24">
             {{-- Proposal status (top-right document metadata) --}}
             @if($proposal->status)
                 @php
@@ -93,7 +93,7 @@
                         default => ['label' => $proposal->status, 'classes' => 'bg-gray-700/80 text-gray-400 border-gray-600'],
                     };
                 @endphp
-                <div class="absolute top-20 right-4 sm:right-6 lg:right-8 flex justify-end">
+                <div class="absolute top-20 right-4 sm:right-6 lg:right-8 flex justify-end max-sm:hidden">
                     <span class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium border {{ $statusConfig['classes'] }}">
                         <span class="size-2 rounded-full bg-current shrink-0 me-2" aria-hidden="true"></span>
                         {{ $statusConfig['label'] }}
@@ -103,6 +103,14 @@
 
             {{-- Hero --}}
             <div class="text-center mb-20">
+                @if($proposal->status ?? false)
+                    <div class="flex justify-center mb-4 sm:hidden">
+                        <span class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium border {{ $statusConfig['classes'] }}">
+                            <span class="size-2 rounded-full bg-current shrink-0 me-2" aria-hidden="true"></span>
+                            {{ $statusConfig['label'] }}
+                        </span>
+                    </div>
+                @endif
                 <p class="text-sm font-medium text-gray-400 mb-4 uppercase tracking-wider">Εμπιστευτικό Έγγραφο</p>
                 <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-white leading-tight">
                     Πρόταση Υλοποίησης<br>
@@ -500,14 +508,14 @@
                                    name="acceptance"
                                    value="1"
                                    x-model="acceptanceChecked"
-                                   class="mt-1 size-5 rounded border-gray-600 bg-gray-800 text-blue-600 focus:ring-blue-500 focus:ring-offset-gray-900">
+                                   class="mt-1 size-5 rounded border-gray-600 bg-gray-800 text-blue-600 focus:ring-blue-500 focus:ring-offset-gray-900 shrink-0">
                             <span class="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors">
                                 Αποδέχομαι την παρούσα πρόταση και το πλαίσιο εμπιστευτικότητας μεταξύ των δύο μερών.
                             </span>
                         </label>
                         <button type="submit"
                                 :disabled="!acceptanceChecked"
-                                class="inline-flex items-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-600/80 to-violet-600/80 backdrop-blur-sm rounded-lg hover:from-blue-600 hover:to-violet-600 hover:border-blue-400/50 hover:-translate-y-0.5 transition-all duration-200 shadow-lg shadow-blue-500/20 hover:shadow-xl hover:shadow-blue-500/30 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 cursor-pointer">
+                                class="inline-flex items-center px-6 py-2 lg:px-8 lg:py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-600/80 to-violet-600/80 backdrop-blur-sm rounded-lg hover:from-blue-600 hover:to-violet-600 hover:border-blue-400/50 hover:-translate-y-0.5 transition-all duration-200 shadow-lg shadow-blue-500/20 hover:shadow-xl hover:shadow-blue-500/30 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 cursor-pointer">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
