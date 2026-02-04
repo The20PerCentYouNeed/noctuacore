@@ -88,7 +88,7 @@
             @if($proposal->status)
                 @php
                     $statusConfig = match (strtolower($proposal->status)) {
-                        'read' => ['label' => 'Διαβασμένο', 'classes' => 'bg-blue-600/20 text-blue-300 border-blue-500/50'],
+                        'under_consideration' => ['label' => 'Υπό Εξέταση', 'classes' => 'bg-blue-600/20 text-blue-300 border-blue-500/50'],
                         'accepted' => ['label' => 'Αποδοχή', 'classes' => 'bg-emerald-600/20 text-emerald-300 border-emerald-500/50'],
                         default => ['label' => $proposal->status, 'classes' => 'bg-gray-700/80 text-gray-400 border-gray-600'],
                     };
