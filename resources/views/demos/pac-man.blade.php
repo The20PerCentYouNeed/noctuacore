@@ -89,13 +89,13 @@
             <p class="text-gray-700 mb-6">
               Ζωντανή ιχνηλάτιση του οδηγού κατά τη διαδικασία παράδοσης του δέματος
             </p>
-            <div class="flex gap-3">
+            <div class="flex flex-col sm:flex-row gap-3 min-w-0">
               <input
                 type="text"
                 placeholder="ΚΩΔΙΚΟΣ ΑΝΑΖΗΤΗΣΗΣ"
-                class="flex-1 px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none"
+                class="flex-1 min-w-0 px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none"
               >
-              <button class="bg-black text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-800 transition">
+              <button class="bg-black text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-800 transition shrink-0 w-full sm:w-auto">
                 ΑΝΑΖΗΤΗΣΗ
               </button>
             </div>
