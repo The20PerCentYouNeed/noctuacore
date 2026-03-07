@@ -1,11 +1,11 @@
 <picture>
     <source
-        srcset="{{ asset('images/logo.webp') }}"
+        {{-- srcset removed --}}
         type="image/webp"
     >
     <img
-        src="{{ asset('images/logo.png') }}"
-        alt="Noctua Logo"
+        {{-- src removed --}}
+        {{-- alt removed --}}
         class="object-contain h-[35px] lg:h-10"
         width="33"
         height="40"
